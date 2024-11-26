@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { ApiKey } from "../db/types";
-import { ApiKeyService } from "../services/api-key-service";
+import { ApiKeyService } from "../services/api-key.service";
 import { Request, Response, NextFunction } from "express";
 import { db } from "../db";
 import { eq } from "drizzle-orm";
@@ -53,7 +53,7 @@ export class AuthMiddleware {
       return null;
     }
 
-    const key = apiKey.slice(3); // Remove 'nomos_' prefix
+    const key = apiKey.slice(5); // Remove 'nomos_' prefix
     const hashedKey = crypto.createHash("sha256").update(key).digest("hex");
 
     const dbApiKey = await db.query.apiKeys.findFirst({
