@@ -10,7 +10,7 @@ export enum Role {
 
 export class ApiKeyService {
   private readonly API_KEY_LENGTH = 32;
-  private readonly API_KEY_PREFIX = "nomos_";
+  static readonly API_KEY_PREFIX = "nomos_";
 
   private readonly AVAILABLE_SCOPES = {
     [Role.ADMIN]: ["*"],
@@ -86,6 +86,6 @@ export class ApiKeyService {
     };
 
     // Return the unhashed key only once
-    return `${this.API_KEY_PREFIX}${key}`;
+    return `${ApiKeyService.API_KEY_PREFIX}${key}`;
   }
 }
