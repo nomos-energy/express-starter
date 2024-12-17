@@ -2,9 +2,6 @@ import express from "express";
 import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
-import customerRoutes from "./routes/customer";
-import partnerRoutes from "./routes/partner";
-import adminRoutes from "./routes/admin";
 
 const app = express();
 
@@ -19,9 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-app.use("/customer", customerRoutes);
-app.use("/partner", partnerRoutes);
-app.use("/admin", adminRoutes);
 
 // Error handling
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
